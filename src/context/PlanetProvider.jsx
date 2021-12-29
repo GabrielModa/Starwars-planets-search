@@ -1,21 +1,22 @@
+import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import PlanetContext from './PlanetContext';
 
 function PlanetProvider({ children }) {
-  const [API, setAPI] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const getStartWarsAPI = async () => {
       const request = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
-      const { results } = await request.json();
-      setAPI(results);
+      const response = await request.json();
+      setData(response);
     };
 
     getStartWarsAPI();
   }, []);
 
   const contextValue = {
-    API,
+    data,
   };
 
   return (
@@ -25,5 +26,9 @@ function PlanetProvider({ children }) {
 
   );
 }
+
+PlanetProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default PlanetProvider;
