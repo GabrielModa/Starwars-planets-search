@@ -2,21 +2,26 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import PlanetContext from './PlanetContext';
 
-function PlanetProvider({ children }) {
+const PlanetProvider = ({ children }) => {
   const [data, setData] = useState([]);
+  const [filterByName, setFilterByName] = useState('');
+
+  const getStarWarsAPI = async () => {
+    const request = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
+    const response = await request.json();
+    const { results } = response;
+
+    setData(results);
+  };
 
   useEffect(() => {
-    const getStartWarsAPI = async () => {
-      const request = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
-      const response = await request.json();
-      setData(response);
-    };
-
-    getStartWarsAPI();
+    getStarWarsAPI();
   }, []);
 
   const contextValue = {
     data,
+    filterByName,
+    setFilterByName,
   };
 
   return (
@@ -25,7 +30,7 @@ function PlanetProvider({ children }) {
     </PlanetContext.Provider>
 
   );
-}
+};
 
 PlanetProvider.propTypes = {
   children: PropTypes.node.isRequired,
