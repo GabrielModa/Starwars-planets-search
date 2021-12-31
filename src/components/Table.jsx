@@ -2,16 +2,34 @@ import React, { useContext } from 'react';
 import PlanetContext from '../context/PlanetContext';
 
 function Table() {
-  const { data, filterByName } = useContext(PlanetContext);
+  const { data,
+    filterByName,
+    filterColumn,
+    filterComparation,
+    filterInputNumber } = useContext(PlanetContext);
 
   function mapTable() {
     return Object.keys(data).length
     && data
       .filter((planet) => planet.name.toLowerCase().includes(filterByName.toLowerCase()))
+      .filter((population) => {
+        switch (filterComparation) {
+        case 'maior que':
+          return Number(population[filterColumn]) > Number(filterInputNumber);
+
+        case 'menor que':
+          return Number(population[filterColumn]) < Number(filterInputNumber);
+
+        case 'igual a':
+          return Number(population[filterColumn]) === Number(filterInputNumber);
+
+        default:
+          return null;
+        }
+      })
       .map((element, index) => (
         <tr key={ index }>
           <td>{element.name}</td>
-          <td>{element.rotation_period}</td>
           <td>{element.rotation_period}</td>
           <td>{element.orbital_period}</td>
           <td>{element.diameter}</td>
@@ -27,8 +45,6 @@ function Table() {
         </tr>
       ));
   }
-
-  console.log(mapTable());
   return (
     <table>
       <thead>

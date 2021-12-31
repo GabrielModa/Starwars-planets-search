@@ -1,9 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Table from '../components/Table';
 import PlanetContext from '../context/PlanetContext';
 
 function Home() {
-  const { setFilterByName } = useContext(PlanetContext);
+  const { setFilterByName,
+    setFilterColumn,
+    setFilterInputNumber,
+    setFilterComparation,
+    filterButton,
+    setfilterButton } = useContext(PlanetContext);
+
+  useEffect(() => {
+    setfilterButton();
+  }, [setFilterColumn, setFilterInputNumber, setFilterComparation, setfilterButton]);
 
   return (
     <main>
@@ -15,6 +24,42 @@ function Home() {
           className="filterName"
           onChange={ ({ target: { value } }) => setFilterByName(value) }
         />
+        <select
+          name=""
+          id=""
+          data-testid="column-filter"
+          onChange={ ({ target: { value } }) => setFilterColumn(value) }
+        >
+          <option value="population">Population</option>
+          <option value="orbital_period">Orbital period</option>
+          <option value="diameter">Diameter</option>
+          <option value="rotation_period">Rotation period</option>
+          <option value="surface_water">Surface Water</option>
+        </select>
+
+        <select
+          name=""
+          id=""
+          data-testid="comparison-filter"
+          onChange={ ({ target: { value } }) => setFilterComparation(value) }
+        >
+          <option value="maior que">Maior que:</option>
+          <option value="igual a">Igual a:</option>
+          <option value="menor que">Menor que:</option>
+        </select>
+        <input
+          type="number"
+          data-testid="value-filter"
+          onChange={ ({ target: { value } }) => setFilterInputNumber(value) }
+        />
+        <button
+          type="button"
+          data-testid="button-filter"
+          onClick={ () => setfilterButton(!filterButton) }
+        >
+          Acionar filtro
+
+        </button>
       </header>
       <section>
         <Table />

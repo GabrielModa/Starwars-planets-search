@@ -5,6 +5,10 @@ import PlanetContext from './PlanetContext';
 const PlanetProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [filterByName, setFilterByName] = useState('');
+  const [filterColumn, setFilterColumn] = useState('population');
+  const [filterComparation, setFilterComparation] = useState('maior que');
+  const [filterInputNumber, setFilterInputNumber] = useState(0);
+  const [filterButton, setfilterButton] = useState(false);
 
   const getStarWarsAPI = async () => {
     const request = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
@@ -22,6 +26,14 @@ const PlanetProvider = ({ children }) => {
     data,
     filterByName,
     setFilterByName,
+    filterColumn,
+    setFilterColumn,
+    filterComparation,
+    setFilterComparation,
+    filterInputNumber,
+    setFilterInputNumber,
+    filterButton,
+    setfilterButton,
   };
 
   return (
