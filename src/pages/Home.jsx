@@ -5,6 +5,7 @@ import PlanetContext from '../context/PlanetContext';
 function Home() {
   const { setFilterByName,
     setFilterColumn,
+    filterInputNumber,
     setFilterInputNumber,
     setFilterComparation,
     filterButton,
@@ -43,21 +44,23 @@ function Home() {
           data-testid="comparison-filter"
           onChange={ ({ target: { value } }) => setFilterComparation(value) }
         >
-          <option value="maior que">Maior que:</option>
-          <option value="igual a">Igual a:</option>
-          <option value="menor que">Menor que:</option>
+          <option value="maior que">maior que</option>
+          <option value="igual a">igual a</option>
+          <option value="menor que">menor que</option>
         </select>
         <input
           type="number"
+          value={ 0 || filterInputNumber }
           data-testid="value-filter"
           onChange={ ({ target: { value } }) => setFilterInputNumber(value) }
         />
+
         <button
           type="button"
           data-testid="button-filter"
           onClick={ () => setfilterButton(!filterButton) }
         >
-          Acionar filtro
+          Filtro
 
         </button>
       </header>
