@@ -5,7 +5,7 @@ import PlanetContext from './PlanetContext';
 const PlanetProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const [filterByName, setFilterByName] = useState('');
-  const [filterColumn, setFilterColumn] = useState('population');
+  const [filterColumn, setFilterColumn] = useState('orbital_period');
   const [filterComparation, setFilterComparation] = useState('maior que');
   const [filterInputNumber, setFilterInputNumber] = useState(0);
   const [filterButton, setfilterButton] = useState(false);
