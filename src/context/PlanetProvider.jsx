@@ -9,6 +9,7 @@ const PlanetProvider = ({ children }) => {
   const [filterComparation, setFilterComparation] = useState('maior que');
   const [filterInputNumber, setFilterInputNumber] = useState(0);
   const [filterButton, setfilterButton] = useState(true);
+  const [removeByValue, setRemoveByValue] = useState(false);
 
   const getStarWarsAPI = async () => {
     const request = await fetch('https://swapi-trybe.herokuapp.com/api/planets/');
@@ -34,6 +35,8 @@ const PlanetProvider = ({ children }) => {
     setFilterInputNumber,
     filterButton,
     setfilterButton,
+    removeByValue,
+    setRemoveByValue,
   };
 
   return (

@@ -4,16 +4,31 @@ import PlanetContext from '../context/PlanetContext';
 
 function Home() {
   const { setFilterByName,
+    filterColumn,
     setFilterColumn,
     filterInputNumber,
     setFilterInputNumber,
     setFilterComparation,
     filterButton,
-    setfilterButton } = useContext(PlanetContext);
+    setfilterButton,
+    removeByValue,
+    setRemoveByValue } = useContext(PlanetContext);
 
   useEffect(() => {
     setfilterButton();
   }, [setFilterColumn, setFilterInputNumber, setFilterComparation, setfilterButton]);
+
+  function rremoveByValue() {
+    const select = filterColumn.split();
+
+    select.map((option) => (option === filterColumn ? removeByValue === true
+      : removeByValue === false));
+    // console.log(filterColumn, select);
+  }
+
+  // useEffect(() => {
+  //   rremoveByValue();
+  // }, [filterColumn, rremoveByValue, setRemoveByValue]);
 
   return (
     <main>
@@ -28,7 +43,9 @@ function Home() {
         <select
           name=""
           id=""
+          isOptionDisabled={ removeByValue }
           data-testid="column-filter"
+          onClick={ () => rremoveByValue() }
           onChange={ ({ target: { value } }) => setFilterColumn(value) }
         >
           <option value="population">population</option>
