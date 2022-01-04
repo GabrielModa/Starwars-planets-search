@@ -73,13 +73,6 @@ function Table() {
         ));
   }
 
-  // useEffect(() => {
-  //   mapTable();
-  //   return () => {
-  //     mapFiltersTable();
-  //   };
-  // }, [filterButton, mapFiltersTable, mapTable]);
-
   return (
     <table>
       <thead>

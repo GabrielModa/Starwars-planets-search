@@ -11,24 +11,16 @@ function Home() {
     setFilterComparation,
     filterButton,
     setfilterButton,
-    removeByValue,
-    setRemoveByValue } = useContext(PlanetContext);
+
+    option,
+
+    optionState,
+    setoptionState,
+  } = useContext(PlanetContext);
 
   useEffect(() => {
     setfilterButton();
   }, [setFilterColumn, setFilterInputNumber, setFilterComparation, setfilterButton]);
-
-  function rremoveByValue() {
-    const select = filterColumn.split();
-
-    select.map((option) => (option === filterColumn ? removeByValue === true
-      : removeByValue === false));
-    // console.log(filterColumn, select);
-  }
-
-  // useEffect(() => {
-  //   rremoveByValue();
-  // }, [filterColumn, rremoveByValue, setRemoveByValue]);
 
   return (
     <main>
@@ -43,16 +35,12 @@ function Home() {
         <select
           name=""
           id=""
-          isOptionDisabled={ removeByValue }
           data-testid="column-filter"
-          onClick={ () => rremoveByValue() }
-          onChange={ ({ target: { value } }) => setFilterColumn(value) }
+          onChange={ ({ target: { value } }) => (setFilterColumn(value)) }
         >
-          <option value="population">population</option>
-          <option value="orbital_period">orbital_period</option>
-          <option value="diameter">diameter</option>
-          <option value="rotation_period">rotation_period</option>
-          <option value="surface_water">surface_water</option>
+
+          {option.map((title) => title !== optionState
+           && (<option key={ title }>{title}</option>))}
         </select>
 
         <select
@@ -61,6 +49,7 @@ function Home() {
           data-testid="comparison-filter"
           onChange={ ({ target: { value } }) => setFilterComparation(value) }
         >
+
           <option value="maior que">maior que</option>
           <option value="igual a">igual a</option>
           <option value="menor que">menor que</option>
@@ -75,7 +64,10 @@ function Home() {
         <button
           type="button"
           data-testid="button-filter"
-          onClick={ () => setfilterButton(!filterButton) }
+          onClick={ () => {
+            setfilterButton(!filterButton);
+            setoptionState(filterColumn);
+          } }
         >
           Filtro
 
