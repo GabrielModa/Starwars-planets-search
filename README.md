@@ -14,7 +14,7 @@ Nesse projeto, você será capaz de:
 Você vai desenvolver uma lista com filtros de planetas do universo de Star Wars usando **Context API e Hooks** para controlar os estados globais.
 
 1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-015-a-project-starwars-planets-search.git`
+  * `git clone https://github.com/GabrielModa/Starwars-planets-search.git`
   * Entre na pasta do repositório que você acabou de clonar:
     * `cd sd-015-a-project-starwars-planets-search`
 
